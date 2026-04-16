@@ -1,0 +1,13 @@
+.form-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+.btn-secondary {
+  background-color: #6c757d;
+  border-color: #6c757d;
+  color: white;
+  &:hover {
+    background-color: color-mix(in srgb, #6c757d, black 10%);
+  }
+}

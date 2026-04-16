@@ -1,0 +1,50 @@
+<aside class="sidebar">
+  <ul class="nav flex-column">
+    <li *ngIf="authService.hasRole('ADMIN')">
+      <a routerLink="/admin/dashboard" routerLinkActive="active">Dashboard</a>
+    </li>
+    <li *ngIf="authService.hasRole('ADMIN')">
+      <a routerLink="/admin/filieres" routerLinkActive="active">Filières</a>
+    </li>
+    <li *ngIf="authService.hasRole('ADMIN')">
+      <a routerLink="/admin/modules" routerLinkActive="active">Modules</a>
+    </li>
+    <li *ngIf="authService.hasRole('ADMIN')">
+      <a routerLink="/admin/elements" routerLinkActive="active">Éléments</a>
+    </li>
+    <li *ngIf="authService.hasRole('ADMIN')">
+    <a routerLink="/admin/departements" routerLinkActive="active">Départements</a>
+   </li>
+    <li *ngIf="authService.hasRole('ADMIN')">
+      <a routerLink="/admin/semestres" routerLinkActive="active">Semestres</a>
+    </li>
+    <li *ngIf="authService.hasRole('ADMIN')">
+      <a routerLink="/admin/professeurs" routerLinkActive="active">Professeurs</a>
+    </li>
+    <li *ngIf="authService.hasRole('ADMIN')">
+      <a routerLink="/admin/etudiants" routerLinkActive="active">Étudiants</a>
+    </li>
+    <li *ngIf="authService.hasRole('ADMIN')">
+      <a routerLink="/admin/import" routerLinkActive="active">Import</a>
+    </li>
+    <li *ngIf="authService.hasRole('PROFESSEUR')">
+      <a routerLink="/professeur/dashboard" routerLinkActive="active">Dashboard</a>
+    </li>
+    <li *ngIf="authService.hasRole('PROFESSEUR')">
+      <a routerLink="/professeur/notes" routerLinkActive="active">Notes</a>
+    </li>
+    <li *ngIf="authService.hasRole('PROFESSEUR')">
+      <a routerLink="/professeur/deliberation" routerLinkActive="active">Délibération</a>
+    </li>
+    <li *ngIf="authService.hasRole('ETUDIANT')">
+      <a routerLink="/etudiant/dashboard" routerLinkActive="active">Dashboard</a>
+    </li>
+    <li *ngIf="authService.hasRole('ETUDIANT')">
+      <a routerLink="/etudiant/notes" routerLinkActive="active">Mes notes</a>
+    </li>
+    <li *ngIf="authService.hasRole('ETUDIANT')">
+      <a routerLink="/etudiant/profile" routerLinkActive="active">Profil</a>
+    </li>
+    <li><a routerLink="/change-password" routerLinkActive="active">Changer mot de passe</a></li>
+  </ul>
+</aside>

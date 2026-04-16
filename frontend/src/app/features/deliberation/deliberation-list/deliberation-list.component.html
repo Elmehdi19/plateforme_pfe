@@ -1,0 +1,105 @@
+<div class="container mt-4">
+  <h2>Délibération</h2>
+
+  <div class="row mb-4 no-print">
+    <div class="col-md-4">
+      <div class="form-group">
+        <label>Filière</label>
+        <select class="form-control" [(ngModel)]="selectedFiliereId" (change)="onFiliereChange()">
+          <option [ngValue]="null">-- Sélectionner --</option>
+          <option *ngFor="let f of filieres" [ngValue]="f.id">{{ f.nom }}</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <label>Semestre</label>
+        <select class="form-control" [(ngModel)]="selectedSemestreId">
+          <option [ngValue]="null">-- Sélectionner --</option>
+          <option *ngFor="let s of semestres" [ngValue]="s.id">{{ s.nom }}</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-md-4 d-flex align-items-end">
+      <button class="btn btn-primary" (click)="calculer()">Calculer</button>
+    </div>
+  </div>
+
+  <div *ngIf="resultats" class="card mb-4">
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <h5 class="mb-0">Statistiques du semestre</h5>
+      <button class="btn btn-sm btn-outline-secondary no-print" (click)="imprimer()">
+        <i class="fas fa-print"></i> Imprimer
+      </button>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="stat-card">
+            <h6>Total étudiants</h6>
+            <p>{{ resultats.total }}</p>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="stat-card">
+            <h6>Validés</h6>
+            <p>{{ resultats.valides }}</p>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="stat-card">
+            <h6>Compensés</h6>
+            <p>{{ resultats.compenses }}</p>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="stat-card">
+            <h6>Non validés</h6>
+            <p>{{ resultats.nonValides }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="mt-3">
+        <strong>Taux de réussite :</strong> {{ resultats.tauxReussite | number:'1.0-2' }}%
+      </div>
+      <button class="btn btn-sm btn-outline-secondary mt-3 no-print" (click)="voirDetails()">Voir le détail par étudiant</button>
+    </div>
+  </div>
+
+  <div *ngIf="showDetails && detailsEtudiants.length > 0" class="card">
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <h5>Détail des résultats</h5>
+      <button class="btn btn-sm btn-outline-secondary no-print" (click)="imprimer()">
+        <i class="fas fa-print"></i> Imprimer
+      </button>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead>
+            60<tr>
+              <th>Étudiant</th>
+              <th>Matricule</th>
+              <th>Moyenne semestre</th>
+              <th>Résultat</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let e of detailsEtudiants">
+              <td>{{ e.etudiantNom }}</td>
+              <td>{{ e.etudiantMatricule }}</td>
+              <td>{{ e.moyenneSemestre | number:'1.2-2' }}</td>
+              <td>
+                <span class="badge" [ngClass]="{
+                  'badge-success': e.resultat === 'VALIDÉ',
+                  'badge-warning': e.resultat === 'VALIDÉ PAR COMPENSATION',
+                  'badge-danger': e.resultat === 'NON VALIDÉ'
+                }">{{ e.resultat }}</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

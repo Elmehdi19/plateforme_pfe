@@ -1,0 +1,33 @@
+<div class="container mt-4">
+  <h2>{{ id ? 'Modifier' : 'Nouvel' }} élément</h2>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label>Nom *</label>
+      <input type="text" class="form-control" formControlName="nom" />
+    </div>
+    <div class="form-group">
+      <label>Code</label>
+      <input type="text" class="form-control" formControlName="code" />
+    </div>
+    <div class="form-group">
+      <label>Coefficient</label>
+      <input type="number" step="0.1" class="form-control" formControlName="coefficient" />
+    </div>
+    <div class="form-group">
+      <label>Module</label>
+      <select class="form-control" formControlName="moduleId">
+        <option [ngValue]="null">-- Aucun --</option>
+        <option *ngFor="let m of modules" [ngValue]="m.id">{{ m.intitule }}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Professeur</label>
+      <select class="form-control" formControlName="professeurId">
+        <option [ngValue]="null">-- Aucun --</option>
+        <option *ngFor="let p of professeurs" [ngValue]="p.id">{{ p.nom }}</option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Enregistrer</button>
+    <button type="button" class="btn btn-secondary" (click)="annuler()">Annuler</button>
+  </form>
+</div>

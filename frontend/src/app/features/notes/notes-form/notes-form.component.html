@@ -1,0 +1,40 @@
+<div class="container mt-4">
+  <div class="card">
+    <div class="card-header">
+      <h5 class="mb-0">{{ id ? 'Modifier' : 'Ajouter' }} une note</h5>
+    </div>
+    <div class="card-body">
+      <form (ngSubmit)="save()">
+        <div class="form-group">
+          <label for="etudiantId">Étudiant</label>
+          <select id="etudiantId" class="form-select" [(ngModel)]="note.etudiantId" name="etudiantId" required>
+            <option [ngValue]="null">-- Sélectionner --</option>
+            <option *ngFor="let e of etudiants" [ngValue]="e.id">{{ e.nom }} {{ e.prenom }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="elementId">Élément</label>
+          <select id="elementId" class="form-select" [(ngModel)]="note.elementId" name="elementId" required>
+            <option [ngValue]="null">-- Sélectionner --</option>
+            <option *ngFor="let el of elements" [ngValue]="el.id">{{ el.nom }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="valeur">Note (0-20)</label>
+          <input id="valeur" type="number" class="form-control" [(ngModel)]="note.valeur" name="valeur" step="0.5" min="0" max="20" required>
+        </div>
+
+        <div class="d-flex gap-2 mt-3">
+          <button type="submit" class="btn btn-primary" [disabled]="!note.etudiantId || !note.elementId || note.valeur == null">
+            <i class="fas fa-save me-1"></i> Enregistrer
+          </button>
+          <button type="button" class="btn btn-secondary" (click)="annuler()">
+            <i class="fas fa-times me-1"></i> Annuler
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

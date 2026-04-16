@@ -1,0 +1,57 @@
+<div class="container mt-4">
+  <h2>{{ id ? 'Modifier' : 'Nouveau' }} module</h2>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label>Code *</label>
+      <input type="text" class="form-control" formControlName="code" />
+      <div *ngIf="form.get('code')?.invalid && form.get('code')?.touched" class="text-danger">
+        Code requis
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Intitulé *</label>
+      <input type="text" class="form-control" formControlName="intitule" />
+      <div *ngIf="form.get('intitule')?.invalid && form.get('intitule')?.touched" class="text-danger">
+        Intitulé requis
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Crédits</label>
+      <input type="number" class="form-control" formControlName="credits" />
+    </div>
+
+    <div class="form-group">
+      <label>Coefficient</label>
+      <input type="number" step="0.1" class="form-control" formControlName="coefficient" />
+    </div>
+
+    <div class="form-group">
+      <label>Filière</label>
+      <select class="form-control" formControlName="filiereId">
+        <option [ngValue]="null">-- Aucune --</option>
+        <option *ngFor="let f of filieres" [ngValue]="f.id">{{ f.nom }}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Semestre</label>
+      <select class="form-control" formControlName="semestreId">
+        <option [ngValue]="null">-- Aucun --</option>
+        <option *ngFor="let s of semestres" [ngValue]="s.id">{{ s.nom }}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Professeur responsable</label>
+      <select class="form-control" formControlName="professeurId">
+        <option [ngValue]="null">-- Aucun --</option>
+        <option *ngFor="let p of professeurs" [ngValue]="p.id">{{ p.nom }}</option>
+      </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Enregistrer</button>
+    <button type="button" class="btn btn-secondary" (click)="annuler()">Annuler</button>
+  </form>
+</div>

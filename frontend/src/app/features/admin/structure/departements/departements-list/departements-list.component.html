@@ -1,0 +1,25 @@
+<div class="container mt-4">
+  <h2>Départements</h2>
+  <button class="btn btn-primary mb-3" (click)="nouveau()">Nouveau département</button>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Nom</th>
+        <th>Code</th>
+        <th>Établissement</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let d of departements">
+        <td>{{ d.nom }}</td>
+        <td>{{ d.code }}</td>
+        <td>{{ d.etablissementNom }}</td>
+        <td>
+          <button class="btn btn-sm btn-warning" (click)="edit(d.id)">Modifier</button>
+          <button class="btn btn-sm btn-danger" (click)="delete(d.id)">Supprimer</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

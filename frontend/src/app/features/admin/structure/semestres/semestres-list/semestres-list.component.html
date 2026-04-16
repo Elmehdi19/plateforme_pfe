@@ -1,0 +1,25 @@
+<div class="container">
+  <h2>Semestres</h2>
+  <button class="btn btn-primary mb-3" (click)="nouveau()">Nouveau semestre</button>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Nom</th>
+        <th>Ordre</th>
+        <th>Année</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let s of semestres">
+        <td>{{ s.nom }}</td>
+        <td>{{ s.ordre }}</td>
+        <td>{{ s.anneeNom }}</td>
+        <td>
+          <button class="btn btn-sm btn-info" (click)="edit(s.id!)">Modifier</button>
+          <button class="btn btn-sm btn-danger" (click)="delete(s.id!)">Supprimer</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

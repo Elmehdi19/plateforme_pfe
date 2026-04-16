@@ -1,0 +1,22 @@
+.dashboard-container {
+  padding: 2rem;
+  background: #f5f7fa;
+  min-height: 100vh;
+}
+
+.card {
+  border-radius: 1rem;
+  box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,0.075);
+  border: none;
+}
+
+.card-header {
+  background: white;
+  border-bottom: 1px solid #e9ecef;
+  font-weight: 600;
+}
+
+.table th {
+  background: #f8f9fa;
+  border-bottom: 2px solid #dee2e6;
+}

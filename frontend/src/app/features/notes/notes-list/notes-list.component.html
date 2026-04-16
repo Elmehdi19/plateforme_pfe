@@ -1,0 +1,43 @@
+<div class="container mt-4">
+  <h2>Gestion des notes</h2>
+  <div class="card">
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <span>Liste des notes</span>
+      <button class="btn btn-primary btn-sm" (click)="nouvelle()">
+        <i class="fas fa-plus me-1"></i> Nouvelle note
+      </button>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Étudiant</th>
+              <th>Élément</th>
+              <th>Note</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let note of notes">
+              <td>{{ getEtudiantName(note.etudiantId) }}</td>
+              <td>{{ getElementName(note.elementId) }}</td>
+              <td><span class="badge" [ngClass]="{'badge-success': note.valeur >= 10, 'badge-danger': note.valeur < 10}">{{ note.valeur }}</span></td>
+              <td>
+            <button class="btn btn-sm btn-warning me-1" (click)="edit(note.id!)">
+            <i class="fas fa-edit"></i>
+          </button>
+          <button class="btn btn-sm btn-danger" (click)="delete(note.id!)">
+            <i class="fas fa-trash-alt"></i>
+          </button>
+              </td>
+            </tr>
+            <tr *ngIf="notes.length === 0">
+              <td colspan="4" class="text-center">Aucune note enregistrée</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

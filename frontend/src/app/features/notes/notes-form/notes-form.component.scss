@@ -1,0 +1,70 @@
+@use 'sass:color'; // facultatif, pour les calculs si besoin
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.card {
+  background: var(--um6p-white);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: none;
+}
+
+.card-header {
+  background-color: var(--um6p-gray);
+  border-bottom: 1px solid #ddd;
+  padding: 1rem 1.25rem;
+  h5 {
+    margin: 0;
+    font-weight: 500;
+    color: var(--um6p-green);
+  }
+}
+
+.card-body {
+  padding: 1.5rem;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--um6p-green);
+  }
+  .form-control, .form-select {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    &:focus {
+      outline: none;
+      border-color: var(--um6p-green);
+      box-shadow: 0 0 0 2px rgba(46, 125, 50, 0.2);
+    }
+  }
+}
+
+.d-flex {
+  display: flex;
+}
+.gap-2 {
+  gap: 0.5rem;
+}
+.btn-primary {
+  background-color: var(--um6p-green);
+  color: white;
+  &:hover {
+    background-color: var(--um6p-light-green);
+  }
+}
+.btn-secondary {
+  background-color: #6c757d;
+  color: white;
+  &:hover {
+    background-color: #5a6268;
+  }
+}

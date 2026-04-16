@@ -1,0 +1,27 @@
+<div class="container">
+  <h2>Liste des professeurs</h2>
+  <button class="btn btn-primary mb-3" (click)="nouveau()">Nouveau professeur</button>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Nom</th>
+        <th>Email</th>
+        <th>Bureau</th>
+        <th>Spécialité</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let p of professeurs">
+        <td>{{ p.nom }}</td>
+        <td>{{ p.email }}</td>
+        <td>{{ p.bureau }}</td>
+        <td>{{ p.specialite }}</td>
+        <td>
+          <button class="btn btn-sm btn-info" (click)="edit(p.id!)">Modifier</button>
+          <button class="btn btn-sm btn-danger" (click)="delete(p.id!)">Supprimer</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,113 @@
+/* ===== UM6P Inspired Theme ===== */
+
+:root {
+  --um6p-green: #2E7D32;
+  --um6p-light-green: #4CAF50;
+  --um6p-orange: #F57C00;
+  --um6p-light-orange: #FFB74D;
+  --um6p-gray: #F5F5F5;
+  --um6p-dark-gray: #333333;
+  --um6p-white: #FFFFFF;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: var(--um6p-gray);
+  margin: 0;
+  color: var(--um6p-dark-gray);
+}
+
+h1, h2, h3 {
+  color: var(--um6p-green);
+  margin-bottom: 1rem;
+}
+
+.btn {
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn-primary {
+  background-color: var(--um6p-green);
+  color: white;
+}
+.btn-primary:hover {
+  background-color: var(--um6p-light-green);
+}
+
+.btn-info {
+  background-color: var(--um6p-orange);
+  color: white;
+}
+.btn-info:hover {
+  background-color: var(--um6p-light-orange);
+}
+
+.btn-danger {
+  background-color: #d32f2f;
+  color: white;
+}
+.btn-danger:hover {
+  background-color: #b71c1c;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.table th {
+  background-color: var(--um6p-green);
+  color: white;
+  padding: 0.75rem;
+  text-align: left;
+}
+.table td {
+  padding: 0.75rem;
+  border-bottom: 1px solid #ddd;
+}
+.table tr:hover {
+  background-color: #f1f1f1;
+}
+
+.card {
+  background: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  margin-bottom: 1rem;
+}
+
+.container {
+  padding: 2rem;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: var(--um6p-green);
+}
+.form-control {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.form-control:focus {
+  outline: none;
+  border-color: var(--um6p-green);
+  box-shadow: 0 0 0 2px rgba(46,125,50,0.2);
+}
+
+.error {
+  color: #d32f2f;
+  font-size: 0.875rem;
+}

@@ -1,0 +1,11 @@
+<nav class="navbar">
+  <div class="navbar-brand">
+    <a routerLink="/">Gestion des Délibérations</a>
+  </div>
+  <div class="navbar-menu">
+    <span *ngIf="authService.isLoggedIn()" class="user-info">
+      {{ authService.getUserName() }} ({{ authService.getRole() }})
+      <button class="btn btn-sm btn-danger" (click)="authService.logout()">Déconnexion</button>
+    </span>
+  </div>
+</nav>

@@ -1,0 +1,35 @@
+<div class="container">
+  <h2>Liste des étudiants</h2>
+  <div class="row mb-3">
+    <div class="col">
+      <input type="text" class="form-control" placeholder="Rechercher..." (input)="onSearch($event)" />
+    </div>
+    <div class="col-auto">
+      <button class="btn btn-primary" (click)="nouveau()">Nouvel étudiant</button>
+    </div>
+  </div>
+  <table class="table" *ngIf="!loading">
+    <thead>
+      <tr>
+        <th>Matricule</th>
+        <th>Nom</th>
+        <th>Email</th>
+        <th>Filière</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let e of etudiants">
+        <td>{{ e.matricule }}</td>
+        <td>{{ e.nom }}</td>
+        <td>{{ e.email }}</td>
+        <td>{{ e.filiere }}</td>
+        <td>
+          <button class="btn btn-sm btn-info" (click)="edit(e.id!)">Modifier</button>
+          <button class="btn btn-sm btn-danger" (click)="delete(e.id!)">Supprimer</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div *ngIf="loading" class="text-center">Chargement...</div>
+</div>

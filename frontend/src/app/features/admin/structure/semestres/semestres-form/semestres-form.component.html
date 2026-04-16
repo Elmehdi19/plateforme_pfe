@@ -1,0 +1,19 @@
+<div class="container">
+  <h2>{{ id ? 'Modifier' : 'Nouveau' }} semestre</h2>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label>Nom *</label>
+      <input type="text" formControlName="nom" class="form-control" />
+    </div>
+    <div class="form-group">
+      <label>Ordre</label>
+      <input type="number" formControlName="ordre" class="form-control" />
+    </div>
+    <div class="form-group">
+      <label>Année (ID)</label>
+      <input type="number" formControlName="anneeId" class="form-control" />
+    </div>
+    <button type="submit" [disabled]="form.invalid" class="btn btn-primary">Enregistrer</button>
+    <button type="button" class="btn btn-secondary" (click)="annuler()">Annuler</button>
+  </form>
+</div>

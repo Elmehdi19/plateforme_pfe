@@ -1,0 +1,36 @@
+<div class="container mt-4">
+  <h2>Modules</h2>
+  <button class="btn btn-primary mb-3" (click)="nouveau()">Nouveau module</button>
+
+  <div *ngIf="loading" class="text-center">Chargement...</div>
+
+  <table class="table table-striped" *ngIf="!loading">
+    <thead>
+      <tr>
+        <th>Code</th>
+        <th>Intitulé</th>
+        <th>Crédits</th>
+        <th>Coefficient</th>
+        <th>Filière</th>
+        <th>Semestre</th>
+        <th>Professeur</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let m of modules">
+        <td>{{ m.code }}</td>
+        <td>{{ m.intitule }}</td>
+        <td>{{ m.credits }}</td>
+        <td>{{ m.coefficient }}</td>
+        <td>{{ m.filiereNom || '-' }}</td>
+        <td>{{ m.semestreNom || '-' }}</td>
+        <td>{{ m.professeurNom || '-' }}</td>
+        <td>
+          <button class="btn btn-sm btn-warning" (click)="edit(m.id)">Modifier</button>
+          <button class="btn btn-sm btn-danger" (click)="delete(m.id)">Supprimer</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

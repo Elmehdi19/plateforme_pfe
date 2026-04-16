@@ -1,0 +1,28 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #0a4d8c;
+  color: white;
+  padding: 0.75rem 2rem;
+
+  a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .navbar-brand {
+    font-size: 1.25rem;
+    font-weight: bold;
+  }
+
+  .user-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+}

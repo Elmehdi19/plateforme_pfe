@@ -1,0 +1,12 @@
+<div class="container mt-4">
+  <h2>Mon Profil</h2>
+  <div class="card">
+    <div class="card-body">
+      <p><strong>Nom :</strong> {{ authService.getUserName() }}</p>
+      <p><strong>Email :</strong> {{ authService.getUserEmail() }}</p>
+      <p><strong>Rôle :</strong> {{ authService.getRole() }}</p>
+      <hr>
+      <a routerLink="/change-password" class="btn btn-outline-primary">Changer le mot de passe</a>
+    </div>
+  </div>
+</div>

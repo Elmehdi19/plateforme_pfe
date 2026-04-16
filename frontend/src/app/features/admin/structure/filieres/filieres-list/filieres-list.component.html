@@ -1,0 +1,25 @@
+<div class="container mt-4">
+  <h2>Filières</h2>
+  <button class="btn btn-primary mb-3" (click)="nouvelle()">Nouvelle filière</button>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Nom</th>
+        <th>Code</th>
+        <th>Département</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let f of filieres">
+        <td>{{ f.nom }}</td>
+        <td>{{ f.code }}</td>
+        <td>{{ f.departementNom }}</td>
+        <td>
+          <button class="btn btn-sm btn-warning" (click)="edit(f.id)">Modifier</button>
+          <button class="btn btn-sm btn-danger" (click)="delete(f.id)">Supprimer</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,29 @@
+<div class="container mt-4">
+  <h2>Éléments</h2>
+  <button class="btn btn-primary mb-3" (click)="nouveau()">Nouvel élément</button>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Nom</th>
+        <th>Code</th>
+        <th>Coefficient</th>
+        <th>Module</th>
+        <th>Professeur</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let e of elements">
+        <td>{{ e.nom }}</td>
+        <td>{{ e.code }}</td>
+        <td>{{ e.coefficient }}</td>
+        <td>{{ e.moduleIntitule }}</td>
+        <td>{{ e.professeurNom }}</td>
+        <td>
+          <button class="btn btn-sm btn-warning" (click)="edit(e.id)">Modifier</button>
+          <button class="btn btn-sm btn-danger" (click)="delete(e.id)">Supprimer</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
