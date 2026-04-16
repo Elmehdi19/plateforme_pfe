@@ -1,0 +1,36 @@
+services:
+  db:
+    image: mysql:8.0
+    container_name: pfe-mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: gestion_notes
+      MYSQL_ROOT_PASSWORD: 12345
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - pfe-network
+
+  app:
+    build: .
+    container_name: pfe-app
+    restart: always
+    depends_on:
+      - db
+    environment:
+      DB_URL: jdbc:mysql://db:3306/gestion_notes?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+      DB_USERNAME: root
+      DB_PASSWORD: 12345
+    ports:
+      - "8080:8080"
+    networks:
+      - pfe-network
+
+volumes:
+  mysql_data:
+
+networks:
+  pfe-network:
+    driver: bridge
