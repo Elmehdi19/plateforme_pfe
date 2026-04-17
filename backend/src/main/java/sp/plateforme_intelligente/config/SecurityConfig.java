@@ -69,28 +69,10 @@ public class SecurityConfig {
             .exceptionHandling(exception -> exception.authenticationEntryPoint(unauthorizedHandler))
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(auth -> auth
-<<<<<<< HEAD
+
                 // Autoriser l'accès aux ressources statiques du frontend (Angular)
                 .requestMatchers("/", "/index.html", "/static/**", "/*.js", "/*.css", "/*.ico", "/*.png", "/*.json", "/*.woff2", "/*.txt").permitAll()
-=======
-                // Autoriser toutes les ressources statiques (Angular)
-                .requestMatchers(
-                    "/",
-                    "/index.html",
-                    "/static/**",
-                    "/*.js",
-                    "/*.css",
-                    "/*.ico",
-                    "/*.png",
-                    "/*.json",
-                    "/*.woff2",
-                    "/*.woff",
-                    "/*.ttf",
-                    "/*.svg",
-                    "/favicon.ico",
-                    "/manifest.json"
-                ).permitAll()
->>>>>>> 06eef25 (Modif de security config)
+
                 // Autoriser l'authentification
                 .requestMatchers("/api/auth/**").permitAll()
                 .requestMatchers("/h2-console/**").permitAll()
