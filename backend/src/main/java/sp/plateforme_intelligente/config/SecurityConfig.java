@@ -56,7 +56,6 @@ public class SecurityConfig {
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type"));
         configuration.setAllowCredentials(true);
-        
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;
@@ -70,17 +69,36 @@ public class SecurityConfig {
             .exceptionHandling(exception -> exception.authenticationEntryPoint(unauthorizedHandler))
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(auth -> auth
+<<<<<<< HEAD
                 // Autoriser l'accès aux ressources statiques du frontend (Angular)
                 .requestMatchers("/", "/index.html", "/static/**", "/*.js", "/*.css", "/*.ico", "/*.png", "/*.json", "/*.woff2", "/*.txt").permitAll()
+=======
+                // Autoriser toutes les ressources statiques (Angular)
+                .requestMatchers(
+                    "/",
+                    "/index.html",
+                    "/static/**",
+                    "/*.js",
+                    "/*.css",
+                    "/*.ico",
+                    "/*.png",
+                    "/*.json",
+                    "/*.woff2",
+                    "/*.woff",
+                    "/*.ttf",
+                    "/*.svg",
+                    "/favicon.ico",
+                    "/manifest.json"
+                ).permitAll()
+>>>>>>> 06eef25 (Modif de security config)
                 // Autoriser l'authentification
                 .requestMatchers("/api/auth/**").permitAll()
                 .requestMatchers("/h2-console/**").permitAll()
-                // Tout le reste nécessite une authentification
+                // Toute autre requête nécessite une authentification
                 .anyRequest().authenticated()
             );
 
         http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
-        
         return http.build();
     }
 }
