@@ -6,7 +6,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository }}
+  IMAGE_NAME: elmehdi19/plateforme_pfe   # <-- tout en minuscules
 
 jobs:
   build:
