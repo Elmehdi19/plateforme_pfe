@@ -49,7 +49,9 @@ public class SecurityConfig {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(Arrays.asList(
             "http://localhost:4200",
-            "http://127.0.0.1:4200"
+            "http://127.0.0.1:4200",
+            "http://localhost:8080",
+            "http://localhost:8081"
         ));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type"));
@@ -68,8 +70,12 @@ public class SecurityConfig {
             .exceptionHandling(exception -> exception.authenticationEntryPoint(unauthorizedHandler))
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(auth -> auth
+                // Permettre l'accès aux ressources statiques du frontend
+                .requestMatchers("/", "/index.html", "/static/**", "/*.js", "/*.css", "/*.png", "/*.ico", "/*.json", "/*.woff2").permitAll()
+                // Permettre l'authentification
                 .requestMatchers("/api/auth/**").permitAll()
                 .requestMatchers("/h2-console/**").permitAll()
+                // Tout le reste nécessite une authentification
                 .anyRequest().authenticated()
             );
 
