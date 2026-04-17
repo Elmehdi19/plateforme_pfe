@@ -7,7 +7,7 @@ services:
       MYSQL_DATABASE: gestion_notes
       MYSQL_ROOT_PASSWORD: 12345
     ports:
-      - "3306:3306"
+      - "3307:3306"   # ← changez ici
     volumes:
       - mysql_data:/var/lib/mysql
     networks:
@@ -27,10 +27,3 @@ services:
       - "8080:8080"
     networks:
       - pfe-network
-
-volumes:
-  mysql_data:
-
-networks:
-  pfe-network:
-    driver: bridge
