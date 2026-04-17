@@ -13,7 +13,7 @@ FROM eclipse-temurin:17-jre-alpine
 WORKDIR /app
 
 COPY --from=backend-builder /app/backend/target/*.jar app.jar
-# Copier le dossier Angular pré‑construit (quel que soit son nom)
+# Copie récursive de tout le contenu du dossier dist (quel que soit le nom du sous-dossier)
 COPY frontend/dist/ /app/static
 
 EXPOSE 8080

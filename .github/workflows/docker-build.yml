@@ -10,7 +10,7 @@ env:
   IMAGE_NAME: elmehdi19/plateforme_pfe
 
 jobs:
-  build:
+  build-and-push:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -32,9 +32,8 @@ jobs:
         run: |
           cd frontend
           npm run build -- --output-path=dist --configuration=production
-
-      - name: List dist folder (debug)
-        run: ls -la frontend/dist/
+          # Afficher le contenu du dossier dist pour déboguer
+          ls -la dist/
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
