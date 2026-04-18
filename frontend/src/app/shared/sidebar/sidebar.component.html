@@ -36,6 +36,9 @@
     <li *ngIf="authService.hasRole('PROFESSEUR')">
       <a routerLink="/professeur/deliberation" routerLinkActive="active">Délibération</a>
     </li>
+     <li *ngIf="authService.hasRole('PROFESSEUR')">
+      <a routerLink="/professeur/predictions" routerLinkActive="active">Prédictions</a>
+     </li>
     <li *ngIf="authService.hasRole('ETUDIANT')">
       <a routerLink="/etudiant/dashboard" routerLinkActive="active">Dashboard</a>
     </li>

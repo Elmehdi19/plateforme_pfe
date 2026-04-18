@@ -20,6 +20,9 @@ export class PredictionService {
   generer(etudiantId: number): Observable<any> {
     return this.http.post(`${this.api}/generer/${etudiantId}`, {});
   }
+  getLastByEtudiant(etudiantId: number): Observable<any> {
+  return this.http.get<any>(`${this.api}/etudiant/${etudiantId}/last`);
+  }
 
   getStatistiques(): Observable<any> {
     return this.http.get(`${this.api}/statistiques`);

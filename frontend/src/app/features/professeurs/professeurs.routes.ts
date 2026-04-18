@@ -4,6 +4,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { NotesListComponent } from '../notes/notes-list/notes-list.component';
 import { NotesFormComponent } from '../notes/notes-form/notes-form.component';
 import { DeliberationListComponent } from '../deliberation/deliberation-list/deliberation-list.component';
+import { PredictionsComponent } from './predictions/predictions.component';
 
 export const PROFESSEUR_ROUTES: Routes = [
   {
@@ -15,7 +16,8 @@ export const PROFESSEUR_ROUTES: Routes = [
       { path: 'deliberation', component: DeliberationListComponent },
       { path: 'notes', component: NotesListComponent },
       { path: 'notes/nouveau', component: NotesFormComponent },
-      { path: 'notes/edit/:id', component: NotesFormComponent }
+      { path: 'notes/edit/:id', component: NotesFormComponent },
+      { path: 'predictions', component: PredictionsComponent }
     ]
   }
 ];

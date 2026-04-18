@@ -1,0 +1,19 @@
+.container {
+  padding: 2rem;
+}
+.card {
+  border-radius: 1rem;
+  box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.05);
+}
+.badge-success {
+  background-color: #28a745;
+  color: white;
+}
+.badge-warning {
+  background-color: #ffc107;
+  color: #212529;
+}
+.badge-danger {
+  background-color: #dc3545;
+  color: white;
+}

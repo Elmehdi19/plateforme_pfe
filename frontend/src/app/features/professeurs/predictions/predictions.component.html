@@ -1,0 +1,33 @@
+<div class="container mt-4">
+  <h2>Prédictions des étudiants</h2>
+  <div class="card">
+    <div class="card-body">
+      <div class="form-group">
+        <label>Étudiant</label>
+        <select class="form-control" [(ngModel)]="selectedEtudiantId" (change)="onEtudiantChange()">
+          <option [ngValue]="null">-- Sélectionner --</option>
+          <option *ngFor="let e of etudiants" [ngValue]="e.id">{{ e.nom }} ({{ e.matricule }})</option>
+        </select>
+      </div>
+
+      <div *ngIf="prediction" class="mt-4">
+        <h4>Dernière prédiction</h4>
+        <p><strong>Score de risque :</strong> {{ prediction.scoreRisque }}</p>
+        <p><strong>Niveau :</strong>
+          <span [ngClass]="{
+            'badge-success': prediction.niveauRisque === 'FAIBLE',
+            'badge-warning': prediction.niveauRisque === 'MOYEN',
+            'badge-danger': prediction.niveauRisque === 'ELEVE'
+          }" class="badge">{{ prediction.niveauRisque }}</span>
+        </p>
+        <p><strong>Date :</strong> {{ prediction.datePrediction | date:'dd/MM/yyyy' }}</p>
+        <button class="btn btn-primary" (click)="genererPrediction()">Générer une nouvelle prédiction</button>
+      </div>
+
+      <div *ngIf="selectedEtudiantId && !prediction" class="alert alert-info mt-4">
+        Aucune prédiction pour cet étudiant.
+        <button class="btn btn-primary mt-2" (click)="genererPrediction()">Générer</button>
+      </div>
+    </div>
+  </div>
+</div>
