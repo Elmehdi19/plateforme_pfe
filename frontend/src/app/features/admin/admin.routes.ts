@@ -19,7 +19,8 @@ import { ProfesseursFormComponent } from './structure/professeurs/professeurs-fo
 import { ProfesseursListComponent } from './structure/professeurs/professeurs-list/professeurs-list.component';
 import { DepartementsListComponent } from './structure/departements/departements-list/departements-list.component';
 import { DepartementsFormComponent } from './structure/departements/departements-form/departements-form.component';
-
+import { DeliberationListComponent } from '../deliberation/deliberation-list/deliberation-list.component';
+import { PredictionsComponent } from '../professeurs/predictions/predictions.component';
 
 export const ADMIN_ROUTES: Routes = [
   {
@@ -53,8 +54,9 @@ export const ADMIN_ROUTES: Routes = [
       { path: 'parametres', component: ParametresComponent },
       { path: 'departements', component: DepartementsListComponent },
       { path: 'departements/nouveau', component: DepartementsFormComponent },
-      { path: 'departements/:id', component: DepartementsFormComponent }
-
+      { path: 'departements/:id', component: DepartementsFormComponent },
+      { path: 'deliberation', component: DeliberationListComponent },
+      { path: 'predictions', component: PredictionsComponent }
     ]
   }
 ];
