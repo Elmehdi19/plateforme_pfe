@@ -2,16 +2,16 @@ import { Routes } from '@angular/router';
 import { AuthGuard } from './core/guards/auth-guard';
 import { RoleGuard } from './core/guards/role-guard';
 import { ChangePasswordComponent } from './features/change-password/change-password.component';
-import { LandingComponent } from './features/landing/landing.component'; // ← ajustez le chemin si nécessaire
+import { LandingComponent } from './features/landing/landing.component';
 
 export const routes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '', component: LandingComponent },  // Landing page à la racine
   {
     path: 'login',
     loadComponent: () => import('./features/auth/login/login.component').then(m => m.LoginComponent)
   },
   {
-    path: 'change-password',            // ← route déplacée avant le wildcard
+    path: 'change-password',
     component: ChangePasswordComponent,
     canActivate: [AuthGuard]
   },
@@ -33,7 +33,5 @@ export const routes: Routes = [
     data: { role: 'etudiant' },
     loadChildren: () => import('./features/etudiant/etudiant.routes').then(m => m.ETUDIANT_ROUTES)
   },
-  { path: '**', redirectTo: '/login' },
-  { path: '', component: LandingComponent },
-  { path: 'login', loadComponent: () => import('./features/auth/login/login.component').then(m => m.LoginComponent) },
+  { path: '**', redirectTo: '' }  // Rediriger les routes inconnues vers la landing page
 ];
