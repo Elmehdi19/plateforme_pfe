@@ -1,11 +1,11 @@
 services:
   app:
-    image: ghcr.io/elmehdi19/plateforme_pfe:latest
+    build: .
     container_name: pfe-app
     restart: always
     environment:
       DB_URL: jdbc:mysql://host.docker.internal:3306/gestion_notes?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
       DB_USERNAME: root
-      DB_PASSWORD: 12345   # ← remplacez par votre mot de passe MySQL local
+      DB_PASSWORD: 12345
     ports:
       - "8081:8080"
