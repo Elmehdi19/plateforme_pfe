@@ -1,0 +1,113 @@
+.landing-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f7fa 0%, #eef2f6 100%);
+  font-family: 'Segoe UI', Roboto, sans-serif;
+}
+
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5rem 10%;
+  flex-wrap: wrap;
+  gap: 2rem;
+
+  .hero-content {
+    flex: 1;
+    h1 {
+      font-size: 3rem;
+      color: #2c3e50;
+      margin-bottom: 1rem;
+    }
+    .tagline {
+      font-size: 1.2rem;
+      color: #5a6874;
+      margin-bottom: 2rem;
+    }
+    .cta-buttons {
+      display: flex;
+      gap: 1rem;
+      .btn {
+        padding: 0.75rem 1.5rem;
+        border-radius: 40px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.3s;
+      }
+      .btn-primary {
+        background: #2e7d32;
+        color: white;
+        border: none;
+        &:hover { background: #1b5e20; transform: translateY(-2px); }
+      }
+      .btn-outline {
+        background: transparent;
+        color: #2e7d32;
+        border: 2px solid #2e7d32;
+        &:hover { background: #2e7d32; color: white; }
+      }
+    }
+  }
+
+  .hero-image {
+    flex: 1;
+    text-align: center;
+    .floating-card {
+      font-size: 8rem;
+      background: rgba(46,125,50,0.1);
+      width: 250px;
+      height: 250px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 20px 30px rgba(0,0,0,0.1);
+      animation: float 3s ease-in-out infinite;
+    }
+  }
+}
+
+.features {
+  padding: 4rem 10%;
+  background: white;
+  text-align: center;
+  h2 {
+    font-size: 2.5rem;
+    color: #2c3e50;
+    margin-bottom: 3rem;
+  }
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    .feature-card {
+      background: #f8f9fa;
+      padding: 2rem;
+      border-radius: 1rem;
+      transition: transform 0.2s;
+      &:hover { transform: translateY(-5px); }
+      .feature-icon { font-size: 3rem; margin-bottom: 1rem; }
+      h3 { color: #2e7d32; margin-bottom: 0.5rem; }
+      p { color: #5a6874; }
+    }
+  }
+}
+
+.footer {
+  text-align: center;
+  padding: 2rem;
+  background: #2c3e50;
+  color: white;
+  margin-top: 2rem;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
+  100% { transform: translateY(0px); }
+}
+
+@media (max-width: 768px) {
+  .hero { flex-direction: column; text-align: center; }
+  .hero .hero-content h1 { font-size: 2rem; }
+}

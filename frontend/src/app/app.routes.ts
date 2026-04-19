@@ -1,7 +1,8 @@
 import { Routes } from '@angular/router';
 import { AuthGuard } from './core/guards/auth-guard';
 import { RoleGuard } from './core/guards/role-guard';
-import { ChangePasswordComponent } from './features/change-password/change-password.component'; // ← ajustez le chemin si nécessaire
+import { ChangePasswordComponent } from './features/change-password/change-password.component';
+import { LandingComponent } from './features/landing/landing.component'; // ← ajustez le chemin si nécessaire
 
 export const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -32,5 +33,7 @@ export const routes: Routes = [
     data: { role: 'etudiant' },
     loadChildren: () => import('./features/etudiant/etudiant.routes').then(m => m.ETUDIANT_ROUTES)
   },
-  { path: '**', redirectTo: '/login' }  // ← wildcard toujours en dernier
+  { path: '**', redirectTo: '/login' },
+  { path: '', component: LandingComponent },
+  { path: 'login', loadComponent: () => import('./features/auth/login/login.component').then(m => m.LoginComponent) },
 ];
