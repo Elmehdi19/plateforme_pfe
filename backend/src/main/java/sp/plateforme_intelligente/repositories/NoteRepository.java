@@ -29,4 +29,9 @@ public interface NoteRepository extends JpaRepository<Note, Long> {
     @Query("SELECT AVG(n.valeur) FROM Note n WHERE n.element.module.semestre.id = :semestreId AND n.etudiant.id = :etudiantId")
     Double calculerMoyenneSemestre(@Param("etudiantId") Long etudiantId, 
                                    @Param("semestreId") Long semestreId);
+    @Query("SELECT AVG(n.valeur) FROM Note n WHERE n.etudiant.id = :etudiantId")
+Double calculerMoyenneGenerale(@Param("etudiantId") Long etudiantId);
+
+    @Query("SELECT COUNT(DISTINCT n.element.module) FROM Note n WHERE n.etudiant.id = :etudiantId AND n.valeur < :seuil")
+    int countModulesEchoues(@Param("etudiantId") Long etudiantId, @Param("seuil") Float seuil);
 }
