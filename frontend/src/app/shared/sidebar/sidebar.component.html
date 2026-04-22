@@ -28,6 +28,9 @@
       <a routerLink="/admin/import" routerLinkActive="active">Import</a>
     </li>
     <li *ngIf="authService.hasRole('PROFESSEUR')">
+      <a routerLink="/professeur/absences" routerLinkActive="active">Absences</a>
+    </li>
+    <li *ngIf="authService.hasRole('PROFESSEUR')">
       <a routerLink="/professeur/dashboard" routerLinkActive="active">Dashboard</a>
     </li>
     <li *ngIf="authService.hasRole('PROFESSEUR')">

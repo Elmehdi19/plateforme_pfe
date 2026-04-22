@@ -27,7 +27,14 @@ public class Etudiant {
     
     @Column(unique = true)
     private String matricule;
-    
+    private Integer nbAbsences;
+    public Integer getNbAbsences() {
+        return nbAbsences;
+    }
+
+    public void setNbAbsences(Integer nbAbsences) {
+        this.nbAbsences = nbAbsences;
+    }
     private String cne; // Code Massar
     private String cin;
     private String nationalite;

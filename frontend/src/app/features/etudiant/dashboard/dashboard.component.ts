@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../core/services/auth.service';
 import { NotesService } from '../../../core/services/notes.service';
+import { AbsenceService } from '../../../core/services/absence.service'; // ← ajout
 import { LoaderService } from '../../../shared/loader/loader.service';
 import { ToastService } from '../../../shared/toast/toast.service';
 
@@ -18,10 +19,12 @@ export class DashboardComponent implements OnInit {
   email = '';
   dernieresNotes: any[] = [];
   moyenneGenerale = 0;
+  nbAbsences = 0; // ← ajout
 
   constructor(
     private authService: AuthService,
     private notesService: NotesService,
+    private absenceService: AbsenceService, // ← ajout
     private loaderService: LoaderService,
     private toastService: ToastService,
     private router: Router
@@ -39,6 +42,8 @@ export class DashboardComponent implements OnInit {
     }
 
     this.loaderService.show();
+
+    // Charger les notes
     this.notesService.getByEtudiant(etudiantId).subscribe({
       next: (notes) => {
         this.dernieresNotes = notes.slice(0, 5);
@@ -46,13 +51,23 @@ export class DashboardComponent implements OnInit {
           const somme = notes.reduce((acc, n) => acc + n.valeur, 0);
           this.moyenneGenerale = somme / notes.length;
         }
-        this.loaderService.hide();
       },
       error: (err) => {
         console.error('Erreur chargement notes', err);
         this.toastService.show('Impossible de charger vos notes', 'error');
-        this.loaderService.hide();
       }
     });
+
+    // Charger le nombre d'absences
+    this.absenceService.countByEtudiant(etudiantId).subscribe({
+      next: (count) => {
+        this.nbAbsences = count;
+      },
+      error: (err) => {
+        console.error('Erreur chargement absences', err);
+      }
+    });
+
+    this.loaderService.hide();
   }
 }
