@@ -14,17 +14,16 @@ import sp.plateforme_intelligente.models.User;
 public interface EtudiantRepository extends JpaRepository<Etudiant, Long> {
     
     Optional<Etudiant> findByMatricule(String matricule);
-    
-    // ✅ CORRIGÉ : prend un objet Filiere, pas un String
+
     List<Etudiant> findByFiliere(Filiere filiere);
+    @Query("SELECT e.nbAbsences FROM Etudiant e WHERE e.id = :etudiantId")
+    Integer getNbAbsences(@Param("etudiantId") Long etudiantId);
     
-    // ✅ AUTRE OPTION : cherche par l'ID de la filière
     List<Etudiant> findByFiliereId(Long filiereId);
     Optional<Etudiant> findByUser(User user);
-    // ✅ OU avec une requête JPQL
     @Query("SELECT e FROM Etudiant e WHERE e.filiere.nom = :filiereNom")
     List<Etudiant> findByFiliereNom(@Param("filiereNom") String filiereNom);
     
-    @Query("SELECT e FROM Etudiant e WHERE e.user.nom LIKE %:keyword% OR e.matricule LIKE %:keyword% OR e.cne LIKE %:keyword%")
+    @Query("SELECT e FROM Etudiant e WHERE e.user.nom LIKE CONCAT('%', :keyword, '%') OR e.matricule LIKE CONCAT('%', :keyword, '%') OR e.cne LIKE CONCAT('%', :keyword, '%')")
     List<Etudiant> rechercher(@Param("keyword") String keyword);
 }
