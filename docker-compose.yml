@@ -1,11 +1,14 @@
 services:
   app:
-    build: .
-    container_name: pfe-app
+    image: ghcr.io/elmehdi19/plateforme_pfe:latest
+    container_name: pfe-backend
     restart: always
     environment:
+      # Utiliser host.docker.internal pour accéder à l'hôte Windows
       DB_URL: jdbc:mysql://host.docker.internal:3306/gestion_notes?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
       DB_USERNAME: root
-      DB_PASSWORD: 12345
+      DB_PASSWORD: votremotdepasse   # ← Mot de passe de votre MySQL Workbench
     ports:
       - "8081:8080"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
