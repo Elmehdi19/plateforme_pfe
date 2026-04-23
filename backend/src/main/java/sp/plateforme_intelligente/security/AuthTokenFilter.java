@@ -28,6 +28,14 @@ public class AuthTokenFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
+        
+        // ✅ AJOUTÉ : Ignorer les URLs d'authentification
+        String path = request.getRequestURI();
+        if (path.startsWith("/api/auth/") || path.startsWith("/auth/")) {
+            filterChain.doFilter(request, response);
+            return;
+        }
+
         try {
             String jwt = parseJwt(request);
             if (jwt != null && jwtUtils.validateJwtToken(jwt)) {
