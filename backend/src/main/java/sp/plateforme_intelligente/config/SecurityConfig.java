@@ -41,13 +41,12 @@ public class SecurityConfig {
         return authConfig.getAuthenticationManager();
     }
 
-    // ✅ WebSecurityCustomizer corrigé : ignorer la sécurité pour ces chemins
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
         return (web) -> web.ignoring()
                 .requestMatchers(
-                    "/api/auth/**",       // Authentification
-                    "/auth/**",           // Au cas où sans /api
+                    "/api/auth/**",
+                    "/auth/**",
                     "/",
                     "/index.html",
                     "/favicon.ico",
@@ -60,7 +59,6 @@ public class SecurityConfig {
                 );
     }
 
-    // ✅ SecurityFilterChain corrigé
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
@@ -68,15 +66,14 @@ public class SecurityConfig {
             .csrf(csrf -> csrf.disable())
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/api/auth/**").permitAll()   // ✅ Autoriser auth
-                .requestMatchers("/auth/**").permitAll()        // ✅ Au cas où sans /api
+                .requestMatchers("/api/auth/**").permitAll()
+                .requestMatchers("/auth/**").permitAll()
                 .anyRequest().authenticated()
             )
             .addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
 
-    // ✅ CORS corrigé : ajouter localhost:8081 et autoriser les headers Authorization
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
