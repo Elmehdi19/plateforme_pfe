@@ -1,3 +1,4 @@
+
 package sp.plateforme_intelligente.config;
 
 import org.springframework.context.annotation.Bean;
