@@ -29,7 +29,7 @@ public class AuthTokenFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
         
-        // ✅ AJOUTÉ : Ignorer les URLs d'authentification
+        // Ignorer les URLs d'authentification
         String path = request.getRequestURI();
         if (path.startsWith("/api/auth/") || path.startsWith("/auth/")) {
             filterChain.doFilter(request, response);
@@ -46,8 +46,6 @@ public class AuthTokenFilter extends OncePerRequestFilter {
                 authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                 SecurityContextHolder.getContext().setAuthentication(authentication);
                 logger.debug("User authenticated: {}", email);
-            } else {
-                logger.debug("No valid JWT token found");
             }
         } catch (Exception e) {
             logger.error("Cannot set user authentication: {}", e.getMessage());
