@@ -1,113 +1,446 @@
-/* ===== UM6P Inspired Theme ===== */
+// ============================================================
+// 1. VARIABLES BOOTSTRAP (surcharge avant l'import)
+// ============================================================
 
-:root {
-  --um6p-green: #2E7D32;
-  --um6p-light-green: #4CAF50;
-  --um6p-orange: #F57C00;
-  --um6p-light-orange: #FFB74D;
-  --um6p-gray: #F5F5F5;
-  --um6p-dark-gray: #333333;
-  --um6p-white: #FFFFFF;
-}
+// — Palette UM6P
+$primary:          #2E7D32;
+$primary-light:    #4CAF50;
+$accent:           #F57C00;
+$accent-light:     #FFB74D;
+$secondary:        #455A64;   // gris bleuté élégant
+$dark:             #333333;
+$light:            #F5F5F5;
+$white:            #FFFFFF;
+$danger:           #d32f2f;
+$danger-dark:      #b71c1c;
+
+$body-bg:          #F0F2F0;   // gris légèrement teinté vert
+$body-color:       #333333;
+
+// — Typographie
+$font-family-sans-serif: 'Roboto', 'Segoe UI', system-ui, sans-serif;
+$font-size-base:         1rem;
+$line-height-base:       1.65;
+$headings-font-weight:   700;
+$headings-color:         $primary;
+$headings-letter-spacing: -0.01em;
+
+// — Bordures & rayons
+$border-radius:    0.5rem;
+$border-radius-lg: 0.875rem;
+$border-radius-sm: 0.3rem;
+
+// — Boutons
+$btn-font-weight:      600;
+$btn-border-radius:    $border-radius;
+$btn-padding-y:        0.55rem;
+$btn-padding-x:        1.35rem;
+$btn-transition:       all 0.25s ease;
+
+// — Cards
+$card-border-radius:   $border-radius-lg;
+$card-border-width:    0;
+$card-box-shadow:      0 4px 20px rgba(46, 125, 50, 0.08);
+$card-cap-bg:          transparent;
+$card-spacer-y:        1.5rem;
+$card-spacer-x:        1.75rem;
+
+// — Formulaires
+$input-border-radius:      $border-radius;
+$input-focus-border-color: $primary;
+$input-focus-box-shadow:   0 0 0 3px rgba(46, 125, 50, 0.18);
+$input-padding-y:          0.55rem;
+$input-padding-x:          0.9rem;
+
+// — Ombres
+$box-shadow-sm:  0 2px 8px rgba(46, 125, 50, 0.07);
+$box-shadow:     0 4px 20px rgba(46, 125, 50, 0.10);
+$box-shadow-lg:  0 8px 36px rgba(46, 125, 50, 0.14);
+
+// ============================================================
+// 2. IMPORT BOOTSTRAP
+// ============================================================
+@import 'bootstrap/scss/bootstrap';
+
+// ============================================================
+// 3. IMPORT GOOGLE FONTS
+// ============================================================
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
+
+// ============================================================
+// 4. BASE GLOBALE
+// ============================================================
+*, *::before, *::after { box-sizing: border-box; }
 
 body {
-  font-family: 'Roboto', sans-serif;
-  background-color: var(--um6p-gray);
-  margin: 0;
-  color: var(--um6p-dark-gray);
+  background-color: $body-bg;
+  color: $body-color;
+  font-family: $font-family-sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
 
-h1, h2, h3 {
-  color: var(--um6p-green);
+h1, h2, h3, h4, h5, h6 {
+  color: $primary;
+  letter-spacing: $headings-letter-spacing;
   margin-bottom: 1rem;
 }
 
-.btn {
+a {
+  color: $primary;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  &:hover { color: $primary-light; }
+}
+
+// ============================================================
+// 5. NAVBAR UM6P
+// ============================================================
+.navbar-um6p {
+  background: linear-gradient(135deg, $primary 0%, darken($primary, 10%) 100%);
+  box-shadow: 0 2px 16px rgba(46, 125, 50, 0.22);
+  padding: 0.85rem 0;
+
+  .navbar-brand {
+    font-size: 1.3rem;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    color: $white !important;
+
+    span { color: $accent-light; }
+  }
+
+  .nav-link {
+    font-weight: 500;
+    font-size: 0.95rem;
+    color: rgba($white, 0.82) !important;
+    border-radius: $border-radius-sm;
+    padding: 0.45rem 0.9rem !important;
+    transition: background 0.2s, color 0.2s;
+
+    &:hover {
+      background: rgba($white, 0.10);
+      color: $white !important;
+    }
+    &.active {
+      color: $accent-light !important;
+      background: rgba($accent, 0.15);
+    }
+  }
+}
+
+// ============================================================
+// 6. CARTES
+// ============================================================
+.card {
   border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
+  border-radius: $card-border-radius;
+  box-shadow: $card-box-shadow;
+  background: $white;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: $box-shadow-lg;
+  }
+
+  .card-header {
+    background: transparent;
+    border-bottom: 1px solid rgba($primary, 0.10);
+    padding: $card-spacer-y $card-spacer-x;
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: $primary;
+    border-radius: $card-border-radius $card-border-radius 0 0 !important;
+  }
+
+  .card-body { padding: $card-spacer-y $card-spacer-x; }
+
+  .card-footer {
+    background: rgba($primary, 0.03);
+    border-top: 1px solid rgba($primary, 0.08);
+    padding: 1rem $card-spacer-x;
+    border-radius: 0 0 $card-border-radius $card-border-radius !important;
+  }
+}
+
+// Accent bord gauche vert
+.card-accent-primary {
+  border-left: 4px solid $primary !important;
+}
+
+// Accent bord gauche orange
+.card-accent-orange {
+  border-left: 4px solid $accent !important;
+}
+
+// Carte statistique UM6P
+.card-stat {
+  .stat-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: $border-radius;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+
+    &.icon-green  { background: rgba($primary, 0.12); color: $primary; }
+    &.icon-orange { background: rgba($accent, 0.12);  color: $accent;  }
+    &.icon-danger { background: rgba($danger, 0.10);  color: $danger;  }
+  }
+
+  .stat-value {
+    font-size: 2rem;
+    font-weight: 900;
+    color: $dark;
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: lighten($dark, 35%);
+  }
+}
+
+// ============================================================
+// 7. BOUTONS
+// ============================================================
+.btn {
+  font-weight: $btn-font-weight;
+  border-radius: $btn-border-radius;
+  letter-spacing: 0.01em;
+  border: none;
+  transition: $btn-transition;
   cursor: pointer;
-  transition: background-color 0.3s;
 }
 
 .btn-primary {
-  background-color: var(--um6p-green);
-  color: white;
-}
-.btn-primary:hover {
-  background-color: var(--um6p-light-green);
+  background-color: $primary;
+  color: $white;
+
+  &:hover, &:focus {
+    background-color: $primary-light;
+    box-shadow: 0 6px 18px rgba($primary, 0.38);
+    transform: translateY(-1px);
+    color: $white;
+  }
+  &:active { transform: translateY(0); box-shadow: none; }
 }
 
-.btn-info {
-  background-color: var(--um6p-orange);
-  color: white;
-}
-.btn-info:hover {
-  background-color: var(--um6p-light-orange);
+// Accent orange (remplace .btn-info)
+.btn-accent, .btn-info {
+  background-color: $accent;
+  color: $white;
+  border: none;
+
+  &:hover, &:focus {
+    background-color: $accent-light;
+    box-shadow: 0 6px 18px rgba($accent, 0.38);
+    transform: translateY(-1px);
+    color: $white;
+  }
 }
 
 .btn-danger {
-  background-color: #d32f2f;
-  color: white;
-}
-.btn-danger:hover {
-  background-color: #b71c1c;
+  background-color: $danger;
+  color: $white;
+
+  &:hover, &:focus {
+    background-color: $danger-dark;
+    box-shadow: 0 6px 18px rgba($danger, 0.35);
+    transform: translateY(-1px);
+  }
 }
 
+.btn-outline-primary {
+  color: $primary;
+  border: 1.5px solid $primary;
+  background: transparent;
+
+  &:hover {
+    background: $primary;
+    color: $white;
+    box-shadow: 0 6px 18px rgba($primary, 0.28);
+    transform: translateY(-1px);
+  }
+}
+
+// Bouton icône rond
+.btn-icon {
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// ============================================================
+// 8. TABLEAUX
+// ============================================================
 .table {
   width: 100%;
-  border-collapse: collapse;
-  background: white;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-}
-.table th {
-  background-color: var(--um6p-green);
-  color: white;
-  padding: 0.75rem;
-  text-align: left;
-}
-.table td {
-  padding: 0.75rem;
-  border-bottom: 1px solid #ddd;
-}
-.table tr:hover {
-  background-color: #f1f1f1;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: $white;
+  box-shadow: $box-shadow;
+  border-radius: $border-radius-lg;
+  overflow: hidden;
+
+  th {
+    background-color: $primary;
+    color: $white;
+    padding: 0.85rem 1rem;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    border: none;
+  }
+
+  td {
+    padding: 0.85rem 1rem;
+    border-bottom: 1px solid rgba($primary, 0.07);
+    vertical-align: middle;
+    color: $body-color;
+  }
+
+  tr:last-child td { border-bottom: none; }
+
+  tr:hover td {
+    background-color: rgba($primary, 0.04);
+  }
 }
 
-.card {
-  background: white;
-  border-radius: 8px;
-  padding: 1.5rem;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  margin-bottom: 1rem;
+// ============================================================
+// 9. FORMULAIRES
+// ============================================================
+.form-group {
+  margin-bottom: 1.1rem;
+
+  label {
+    display: block;
+    margin-bottom: 0.4rem;
+    font-weight: 600;
+    font-size: 0.875rem;
+    color: $primary;
+  }
 }
 
+.form-control, .form-select {
+  width: 100%;
+  padding: $input-padding-y $input-padding-x;
+  border: 1.5px solid #C8D8C8;
+  border-radius: $border-radius;
+  font-size: 0.95rem;
+  font-family: $font-family-sans-serif;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  background: $white;
+
+  &:focus {
+    outline: none;
+    border-color: $primary;
+    box-shadow: $input-focus-box-shadow;
+  }
+
+  &.is-invalid {
+    border-color: $danger;
+    box-shadow: 0 0 0 3px rgba($danger, 0.12);
+  }
+}
+
+.form-label {
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: $primary;
+  margin-bottom: 0.4rem;
+}
+
+// ============================================================
+// 10. MESSAGES D'ERREUR & VALIDATION
+// ============================================================
+.error, .invalid-feedback {
+  color: $danger;
+  font-size: 0.825rem;
+  margin-top: 0.3rem;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+
+  &::before {
+    content: '⚠';
+    font-size: 0.75rem;
+  }
+}
+
+.valid-feedback {
+  color: $primary-light;
+  font-size: 0.825rem;
+  margin-top: 0.3rem;
+}
+
+// ============================================================
+// 11. BADGES
+// ============================================================
+.badge {
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  padding: 0.38em 0.8em;
+  border-radius: 2rem;
+}
+
+.badge-green  { background: rgba($primary, 0.12); color: darken($primary, 5%); }
+.badge-orange { background: rgba($accent, 0.12);  color: darken($accent, 5%);  }
+.badge-danger { background: rgba($danger, 0.10);  color: $danger-dark;          }
+.badge-gray   { background: rgba($dark, 0.08);    color: lighten($dark, 15%);   }
+
+// ============================================================
+// 12. UTILITAIRES & HELPERS
+// ============================================================
 .container {
   padding: 2rem;
 }
 
-.form-group {
-  margin-bottom: 1rem;
-}
-.form-group label {
-  display: block;
-  margin-bottom: 0.5rem;
-  font-weight: 500;
-  color: var(--um6p-green);
-}
-.form-control {
-  width: 100%;
-  padding: 0.5rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-.form-control:focus {
-  outline: none;
-  border-color: var(--um6p-green);
-  box-shadow: 0 0 0 2px rgba(46,125,50,0.2);
+.section-title {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: $primary;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.5rem;
+
+  &::after {
+    content: '';
+    display: block;
+    width: 44px;
+    height: 4px;
+    background: $accent;
+    border-radius: 2px;
+    margin-top: 0.5rem;
+  }
 }
 
-.error {
-  color: #d32f2f;
-  font-size: 0.875rem;
+.divider {
+  border: none;
+  border-top: 1px solid rgba($primary, 0.10);
+  margin: 1.5rem 0;
+}
+
+.text-primary   { color: $primary !important; }
+.text-accent    { color: $accent !important;  }
+.text-danger    { color: $danger !important;  }
+.bg-primary-soft { background: rgba($primary, 0.07) !important; }
+.bg-accent-soft  { background: rgba($accent, 0.08) !important;  }
+
+// Scrollbar personnalisée
+::-webkit-scrollbar       { width: 6px; }
+::-webkit-scrollbar-track { background: $light; }
+::-webkit-scrollbar-thumb {
+  background: rgba($primary, 0.25);
+  border-radius: 3px;
+  &:hover { background: rgba($primary, 0.45); }
 }
