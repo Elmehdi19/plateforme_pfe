@@ -1,14 +1,12 @@
 services:
   app:
-    image: ghcr.io/elmehdi19/plateforme_pfe:latest  
+    image: pfe-local
     container_name: pfe-backend
     restart: always
     environment:
-      DB_URL: jdbc:mysql://host.docker.internal:3306/gestion_notes?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
-      DB_USERNAME: root
-      DB_PASSWORD: 12345
+      DB_URL: jdbc:mysql://143.110.190.40:10546/defaultdb?useSSL=true&serverTimezone=UTC&allowPublicKeyRetrieval=true
+      DB_USERNAME: avnadmin
+      DB_PASSWORD: ${DB_PASSWORD}
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
     ports:
       - "8081:8080"
-    extra_hosts:
-      - "host.docker.internal:host-gateway"

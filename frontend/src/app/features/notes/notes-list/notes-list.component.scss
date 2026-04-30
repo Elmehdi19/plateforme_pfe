@@ -1,31 +1,31 @@
-/* Utilisation des variables CSS du thème global */
+/* Utilisation de variables CSS avec fallback pour éviter l'invisibilité */
 .container {
   max-width: 1400px;
   margin: 0 auto;
 }
 
 h2 {
-  color: var(--um6p-green);
+  color: #1B5E20;                     /* Vert foncé UM6P (fallback) */
   margin-bottom: 1.5rem;
   font-weight: 600;
-  border-left: 4px solid var(--um6p-light-green);
+  border-left: 4px solid #4CAF50;
   padding-left: 1rem;
 }
 
 .card {
-  background: var(--um6p-white);
+  background: #fff;
   border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   border: none;
   margin-bottom: 1.5rem;
 }
 
 .card-header {
-  background-color: var(--um6p-gray);
+  background-color: #f5f5f5;
   border-bottom: 1px solid #ddd;
   padding: 1rem 1.25rem;
   font-weight: 500;
-  color: var(--um6p-green);
+  color: #1B5E20;
   border-radius: 8px 8px 0 0;
 }
 
@@ -35,12 +35,12 @@ h2 {
 
 .table {
   width: 100%;
-  background: var(--um6p-white);
+  background: #fff;
   border-collapse: collapse;
 
   th {
-    background-color: var(--um6p-green);
-    color: var(--um6p-white);
+    background-color: #1B5E20;        /* Fond vert foncé */
+    color: #fff;                      /* Texte blanc */
     padding: 0.75rem;
     text-align: left;
     font-weight: 500;
@@ -49,7 +49,7 @@ h2 {
   td {
     padding: 0.75rem;
     border-bottom: 1px solid #ddd;
-    color: var(--um6p-dark-gray);
+    color: #212121;                   /* Gris très foncé → lisible */
   }
 
   tbody tr:hover {
@@ -57,6 +57,7 @@ h2 {
   }
 }
 
+/* Badges */
 .badge {
   padding: 0.35rem 0.65rem;
   font-size: 0.75rem;
@@ -64,7 +65,7 @@ h2 {
   border-radius: 4px;
 }
 .badge-success {
-  background-color: var(--um6p-green);
+  background-color: #2E7D32;
   color: white;
 }
 .badge-danger {
@@ -72,6 +73,7 @@ h2 {
   color: white;
 }
 
+/* Boutons */
 .btn {
   border: none;
   padding: 0.375rem 0.75rem;
@@ -80,29 +82,30 @@ h2 {
   cursor: pointer;
   transition: background-color 0.3s;
 }
-
 .btn-primary {
-  background-color: var(--um6p-green);
+  background-color: #2E7D32;
   color: white;
-  &:hover {
-    background-color: var(--um6p-light-green);
-  }
+  &:hover { background-color: #4CAF50; }
 }
 .btn-warning {
-  background-color: var(--um6p-orange);
+  background-color: #F57C00;
   color: white;
-  &:hover {
-    background-color: var(--um6p-light-orange);
-  }
+  &:hover { background-color: #FF9800; }
 }
 .btn-danger {
   background-color: #d32f2f;
   color: white;
-  &:hover {
-    background-color: #b71c1c;
-  }
+  &:hover { background-color: #b71c1c; }
 }
 .btn-sm {
   padding: 0.25rem 0.5rem;
   font-size: 0.875rem;
+}
+
+/* Message "Aucune note" */
+.no-data {
+  text-align: center;
+  padding: 2rem;
+  color: #757575;
+  font-style: italic;
 }

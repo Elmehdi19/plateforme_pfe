@@ -12,4 +12,4 @@ frontend/.angular/
 # IDE
 .idea/
 .vscode/
-*.iml
+*.iml.env

@@ -1,0 +1,37 @@
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql_partage
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root123
+      MYSQL_DATABASE: gestion_notes
+    ports:
+      - "3309:3306"  
+    volumes:
+      - ./dump.sql:/docker-entrypoint-initdb.d/dump.sql   # import automatique
+      - mysql_data:/var/lib/mysql
+    networks:
+      - app-network
+
+  app:
+    image: ghcr.io/elmehdi19/plateforme_pfe:latest   # votre image publique
+    container_name: pfe-backend
+    restart: always
+    environment:
+      DB_URL: jdbc:mysql://mysql:3306/gestion_notes?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+      DB_USERNAME: root
+      DB_PASSWORD: root123
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+    ports:
+      - "8081:8080"
+    depends_on:
+      - mysql
+    networks:
+      - app-network
+
+networks:
+  app-network:
+
+volumes:
+  mysql_data:

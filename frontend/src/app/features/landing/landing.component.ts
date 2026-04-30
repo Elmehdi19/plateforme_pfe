@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import AOS from 'aos';
 
 @Component({
   selector: 'app-landing',
@@ -9,7 +10,7 @@ import { RouterLink } from '@angular/router';
   templateUrl: './landing.component.html',
   styleUrls: ['./landing.component.scss']
 })
-export class LandingComponent {
+export class LandingComponent implements OnInit {
   features = [
     { title: 'Gestion des notes', description: 'Saisie, import Excel et consultation des notes par élément, module ou semestre.', icon: '📊' },
     { title: 'Délibération automatisée', description: 'Calcul des moyennes, compensation, rattrapage et génération de PV.', icon: '⚖️' },
@@ -20,11 +21,20 @@ export class LandingComponent {
   ];
 
   stats = [
-    { value: '100%', label: 'Automatisation' },
-    { value: '0', label: 'Erreur de calcul' },
-    { value: '24/7', label: 'Disponibilité' },
-    { value: '+50', label: 'Établissements' }
+    { value: 100, suffix: '%', label: 'Automatisation' },
+    { value: 0, suffix: '', label: 'Erreur de calcul' },
+    { value: 24, suffix: '/7', label: 'Disponibilité' },
+    { value: 50, suffix: '+', label: 'Établissements' }
   ];
 
   currentYear = new Date().getFullYear();
+
+  ngOnInit(): void {
+    AOS.init({
+      duration: 800,
+      easing: 'ease-out-cubic',
+      once: true,
+      mirror: false
+    });
+  }
 }

@@ -1,20 +1,30 @@
 // ============================================================
 // 1. VARIABLES BOOTSTRAP (surcharge avant l'import)
 // ============================================================
-
+:root {
+  --um6p-green:       #2E7D32;
+  --um6p-light-green: #4CAF50;
+  --um6p-dark-green:  #1B5E20;
+  --um6p-orange:      #F57C00;
+  --um6p-light-orange:#FFB74D;
+  --um6p-white:       #FFFFFF;
+  --um6p-gray:        #F5F5F5;
+  --um6p-dark-gray:   #333333;
+  --um6p-body-bg:     #F0F2F0;
+}
 // — Palette UM6P
 $primary:          #2E7D32;
 $primary-light:    #4CAF50;
 $accent:           #F57C00;
 $accent-light:     #FFB74D;
-$secondary:        #455A64;   // gris bleuté élégant
+$secondary:        #455A64;   
 $dark:             #333333;
 $light:            #F5F5F5;
 $white:            #FFFFFF;
 $danger:           #d32f2f;
 $danger-dark:      #b71c1c;
 
-$body-bg:          #F0F2F0;   // gris légèrement teinté vert
+$body-bg:          #F0F2F0;   
 $body-color:       #333333;
 
 // — Typographie

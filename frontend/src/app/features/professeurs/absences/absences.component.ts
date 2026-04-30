@@ -38,13 +38,30 @@ export class AbsencesComponent implements OnInit {
       this.toastService.show('Veuillez remplir tous les champs', 'error');
       return;
     }
+
+    // Récupérer l'objet complet de l'élément sélectionné
+    const elementSelectionne = this.elements.find(el => el.id == this.selectedElementId);
+    if (!elementSelectionne) {
+      this.toastService.show('Élément introuvable', 'error');
+      return;
+    }
+
+    // Vérifier que le moduleId est bien présent (doit être fourni par l'API)
+    const moduleId = elementSelectionne.moduleId;
+    if (!moduleId) {
+      this.toastService.show('Erreur : impossible de déterminer le module associé', 'error');
+      return;
+    }
+
     const payload = {
       etudiant: { id: this.selectedEtudiantId },
       element: { id: this.selectedElementId },
+      module: { id: moduleId },             // ✅ Ajout du module
       dateAbsence: this.dateAbsence,
       justifiee: this.justifiee,
-      motif: this.motif
+      raison: this.motif                     // ✅ 'raison' correspond à la colonne en base
     };
+
     this.absenceService.create(payload).subscribe({
       next: () => {
         this.toastService.show('Absence enregistrée', 'success');
