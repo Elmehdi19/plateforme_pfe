@@ -27,26 +27,6 @@ Développée dans le cadre d’un projet de fin d’études, elle automatise les
 - 🌐 **Exposition publique via ngrok** (démonstration sans hébergement payant)
 - 🔄 **CI/CD** avec GitHub Actions (build, test, push image)
 
----
-
-## 🧱 Architecture technique
-┌─────────────────────────────────────────────────────────────┐
-│ Client (Navigateur) │
-│ Angular 19 (SPA, lazy loading) │
-└───────────────────────────┬─────────────────────────────────┘
-│ HTTPS (ngrok ou localhost)
-┌───────────────────────────▼─────────────────────────────────┐
-│ API REST (Spring Boot 3.2) │
-│ - Spring Security + JWT (stateless) │
-│ - Services : délibération, prédiction ML, calculs, Excel │
-│ - Modèle ML chargé au démarrage (model.ser) │
-└───────────────────────────┬─────────────────────────────────┘
-│
-┌───────────────────────────▼─────────────────────────────────┐
-│ Base de données MySQL │
-│ - Dev local : MySQL dans Docker (ou host.docker.internal)│
-│ - Production : Aiven Cloud MySQL (SSL) │
-└─────────────────────────────────────────────────────────────┘
 
 text
 
