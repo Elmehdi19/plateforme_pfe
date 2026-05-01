@@ -120,29 +120,13 @@ Visualisez vos notes, moyenne, absences.
 
 Consultez votre score de risque (si activé).
 
-📁 Structure du projet (principaux dossiers)
-text
-plateforme_pfe/
-├── backend/                  # Code Spring Boot
-│   ├── src/main/java/...
-│   └── Dockerfile
-├── frontend/                 # Code Angular
-├── docker-compose.yml
-├── .env.example              # Template pour les variables
-├── docs/                     # Documentation, exemples Excel, captures
-└── README.md
+
 🧹 Arrêt et nettoyage
 bash
 docker-compose down        # Arrête les conteneurs
 docker-compose down -v     # Supprime aussi les volumes (réinitialise la BDD)
-🔧 Dépannage
-Problème	Solution
-Port 8081 déjà utilisé	Modifiez docker-compose.yml ("8082:8080")
-Connexion MySQL refusée	Vérifiez que le service db est bien lancé : docker-compose logs db
-Erreur 401 non autorisé	Vérifiez vos identifiants ; videz le cache du navigateur
-CORS bloqué	La configuration est centralisée dans SecurityConfig.java ; aucun CorsConfig séparé
-Le modèle ML (.ser) ne charge pas	Vérifiez que le fichier est dans src/main/resources/ à la racine ou sous un dossier connu
-ngrok ne fonctionne pas	Si vous utilisez ngrok, vérifiez que le tunnel est bien dirigé vers localhost:8080 (port du conteneur)
+
+
 📈 Machine Learning – Prédiction de risque
 Modèle : régression logistique (Weka/Smile), sauvegardé en model.ser.
 
